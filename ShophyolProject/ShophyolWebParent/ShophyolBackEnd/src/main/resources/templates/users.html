@@ -86,9 +86,9 @@
 					<tr>
 						<th>User ID</th>
 						<th>Photos</th>
-						<th>E-mail</th>
 						<th>First Name</th>
 						<th>Last Name</th>
+						<th>E-mail</th>
 						<th>Roles</th>
 						<th>Enabled</th>
 						<th></th>
@@ -98,9 +98,9 @@
 					<tr th:each="user : ${listUsers}">
 						<td>[[${user.id}]]</td>
 						<td></td>
-						<td>[[${user.email}]]</td>
 						<td>[[${user.firstName}]]</td>
 						<td>[[${user.lastName}]]</td>
+						<td>[[${user.email}]]</td>
 						<td>[[${user.roles}]]</td>
 						<td>[[${user.enabled}]]</td>
 						<td>
