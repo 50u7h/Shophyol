@@ -1,0 +1,27 @@
+*.icon-white {
+	color: white
+}
+
+*.icon-silver {
+	color: silver
+}
+
+*.icon-green {
+	color: green
+}
+
+*.icon-black {
+	color: black
+}
+
+*.icon-red {
+	color: red
+}
+
+*.icon-gray {
+	color: gray
+}
+
+a {
+	text-decoration: none !important;
+}

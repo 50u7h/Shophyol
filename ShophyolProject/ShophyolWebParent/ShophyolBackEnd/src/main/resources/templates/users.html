@@ -8,6 +8,9 @@
 	<title>Home - Shophyol Admin</title>
 
 	<link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
+	<link rel="stylesheet" type="text/css" th:href="@{/fontawesome/all.css}" />
+	<link rel="stylesheet" type="text/css" th:href="@{/style.css}" />
+
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
 		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
 		crossorigin="anonymous"></script>
@@ -97,14 +100,21 @@
 				<tbody>
 					<tr th:each="user : ${listUsers}">
 						<td>[[${user.id}]]</td>
-						<td></td>
+						<td><span class="fas fa-portrait fa-3x icon-gray"></span></td>
+						<td>[[${user.email}]]</td>
 						<td>[[${user.firstName}]]</td>
 						<td>[[${user.lastName}]]</td>
-						<td>[[${user.email}]]</td>
 						<td>[[${user.roles}]]</td>
-						<td>[[${user.enabled}]]</td>
+
 						<td>
-							Edit &nbsp; Delete
+							<a th:if="${user.enabled == true}" class="fas fa-check-circle fa-2x icon-green" href=""></a>
+							<a th:if="${user.enabled == false}" class="fas fa-check-circle fa-2x icon-red" href=""></a>
+						</td>
+
+						<td>
+							<a class="fas fa-edit fa-2x icon-green" href=""></a>
+							&nbsp;
+							<a class="fas fa-trash fa-2x icon-black" href=""></a>
 						</td>
 					</tr>
 				</tbody>
