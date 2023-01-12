@@ -100,10 +100,18 @@ public class UserRepositoryTests {
 
 	@Test
 	public void testCountById() {
-		Integer id = 10;
+		Integer id = 11;
 		Long countByIdLong = repo.countById(id);
 		System.out.println(countByIdLong);
 
 		assertThat(countByIdLong).isNotNull().isGreaterThan(0);
+	}
+
+	@Test
+	public void testStatus() {
+		Integer id = 11;
+		boolean status = repo.findById(id).get().isEnabled();
+		repo.updateEnabledStatus(id, !status);
+
 	}
 }

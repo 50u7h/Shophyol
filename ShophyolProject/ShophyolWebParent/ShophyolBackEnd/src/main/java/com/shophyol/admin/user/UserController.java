@@ -21,6 +21,7 @@ public class UserController {
 
 	@GetMapping("/users")
 	public String listAll(Model model) {
+
 		List<User> listUsers = service.listAll();
 		model.addAttribute("listUsers", listUsers);
 
@@ -29,6 +30,7 @@ public class UserController {
 
 	@GetMapping("/users/new")
 	public String newUser(Model model) {
+
 		List<Role> listRoles = service.listRoles();
 
 		User user = new User();
@@ -43,6 +45,7 @@ public class UserController {
 
 	@PostMapping("/users/save")
 	public String saveUser(User user, RedirectAttributes redirectAttributes) {
+
 		System.out.println(user);
 		service.save(user);
 
@@ -53,6 +56,7 @@ public class UserController {
 
 	@GetMapping("/users/edit/{id}")
 	public String editUser(@PathVariable(name = "id") Integer id, Model model, RedirectAttributes redirectAttributes) {
+
 		try {
 			User user = service.get(id);
 			List<Role> listRoles = service.listRoles();
@@ -72,6 +76,7 @@ public class UserController {
 	@GetMapping("/users/delete/{id}")
 	public String deleteUser(@PathVariable(name = "id") Integer id, Model model,
 			RedirectAttributes redirectAttributes) {
+
 		try {
 			service.delete(id);
 			redirectAttributes.addFlashAttribute("message", "The user ID " + id + " has been deleted successfully");
@@ -79,6 +84,18 @@ public class UserController {
 			redirectAttributes.addFlashAttribute("message", ex.getMessage());
 			return "redirect:/users";
 		}
+		return "redirect:/users";
+	}
+
+	@GetMapping("/users/{id}/enabled/{status}")
+	public String updateUserEnabledStatus(@PathVariable("id") Integer id, @PathVariable("status") boolean enabled,
+			RedirectAttributes redirectAttributes) {
+
+		service.updateUserEnabledStatus(id, enabled);
+		String status = enabled ? "enabled" : "disabled";
+		String message = "The user ID " + id + " has been " + status;
+		redirectAttributes.addFlashAttribute("message", message);
+
 		return "redirect:/users";
 	}
 }

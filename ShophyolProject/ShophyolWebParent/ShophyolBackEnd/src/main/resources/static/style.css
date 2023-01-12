@@ -24,4 +24,5 @@
 
 a {
 	text-decoration: none !important;
+	outline: none !important;
 }
