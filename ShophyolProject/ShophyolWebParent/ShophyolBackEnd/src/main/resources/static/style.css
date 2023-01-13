@@ -30,3 +30,12 @@ a {
 	text-decoration: none !important;
 	outline: none !important;
 }
+
+img.center {
+	display: block;
+	margin: 0 auto;
+}
+
+td {
+	text-align: center;
+}
