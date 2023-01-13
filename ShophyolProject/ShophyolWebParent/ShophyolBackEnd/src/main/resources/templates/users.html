@@ -70,6 +70,12 @@
 		<div>
 			<h2>Manage Users</h2>
 			<a th:href="@{/users/new}">Create New User</a>
+			&nbsp;|&nbsp;
+			<a th:href="@{/users/export/csv}">Export to CSV</a>
+			&nbsp;|&nbsp;
+			<a th:href="@{/users/export/excel}">Export to Excel</a>
+			&nbsp;|&nbsp;
+			<a th:href="@{/users/export/pdf}">Export to PDF</a>
 		</div>
 
 		<div th:if="${message != null}" class="alert alert-success text-center">
@@ -80,7 +86,6 @@
 			<form th:action="@{/users/page/1}" class="form-inline m-3">
 				<input type="hidden" name="sortField" th:value="${sortField}" />
 				<input type="hidden" name="sortDir" th:value="${sortDir}" />
-
 				&nbsp;&nbsp;
 				<input type="search" name="keyword" th:value="${keyword}" class="col-sm-2 col-form-label-sm"
 					placeholder=" Search" required />
