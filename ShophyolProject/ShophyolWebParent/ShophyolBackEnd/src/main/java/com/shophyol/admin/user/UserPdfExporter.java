@@ -53,7 +53,7 @@ public class UserPdfExporter extends AbstractExporter {
 	private void writeTableData(PdfPTable table, List<User> listUsers) {
 		for (User user : listUsers) {
 			table.addCell(String.valueOf(user.getId()));
-						table.addCell(user.getFirstName());
+			table.addCell(user.getFirstName());
 			table.addCell(user.getLastName());
 			table.addCell(user.getEmail());
 			table.addCell(user.getRoles().toString());

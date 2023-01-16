@@ -22,6 +22,10 @@
 	color: gray
 }
 
+*.icon-dark {
+	color: dimgray
+}
+
 .icon-orange {
 	color: rgb(209, 113, 5)
 }
@@ -36,6 +40,47 @@ img.center {
 	margin: 0 auto;
 }
 
-td {
+tr {
 	text-align: center;
 }
+
+@media screen and (max-width: 768px) {
+
+	/* small screen */
+	div.full-details {
+		display: none
+	}
+
+	div.less-details {
+		display: block;
+	}
+}
+
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+
+	/* medium screen */
+	div.full-details {
+		display: block;
+	}
+
+	div.less-details {
+		display: none;
+	}
+
+	.hideable-column {
+		display: none
+	}
+}
+
+@media screen and (min-width: 1024px) {
+
+	/* small screen */
+	div.less-details {
+		display: none;
+	}
+
+	.hideable-column {
+		display: table-cell;
+	}
+}
+
