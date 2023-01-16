@@ -1,4 +1,4 @@
-package com.shophyol.admin.user;
+package com.shophyol.admin.user.export;
 
 import java.awt.Color;
 import java.io.IOException;
@@ -13,6 +13,7 @@ import com.lowagie.text.Phrase;
 import com.lowagie.text.pdf.PdfPCell;
 import com.lowagie.text.pdf.PdfPTable;
 import com.lowagie.text.pdf.PdfWriter;
+import com.shophyol.admin.user.AbstractExporter;
 import com.shophyol.common.entity.User;
 
 import jakarta.servlet.http.HttpServletResponse;

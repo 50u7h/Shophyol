@@ -1,4 +1,4 @@
-package com.shophyol.admin.user;
+package com.shophyol.admin.user.export;
 
 import java.io.IOException;
 import java.util.List;
@@ -7,6 +7,7 @@ import org.supercsv.io.CsvBeanWriter;
 import org.supercsv.io.ICsvBeanWriter;
 import org.supercsv.prefs.CsvPreference;
 
+import com.shophyol.admin.user.AbstractExporter;
 import com.shophyol.common.entity.User;
 
 import jakarta.servlet.http.HttpServletResponse;

@@ -1,4 +1,4 @@
-package com.shophyol.admin.user;
+package com.shophyol.admin.user.export;
 
 import java.io.IOException;
 import java.util.List;
@@ -11,6 +11,7 @@ import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
+import com.shophyol.admin.user.AbstractExporter;
 import com.shophyol.common.entity.User;
 
 import jakarta.servlet.ServletOutputStream;
