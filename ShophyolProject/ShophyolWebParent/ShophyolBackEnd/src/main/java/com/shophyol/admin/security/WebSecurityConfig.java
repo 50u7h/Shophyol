@@ -25,7 +25,7 @@ public class WebSecurityConfig {
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
 		http.authorizeHttpRequests().anyRequest().authenticated().and().formLogin().loginPage("/login")
-				.usernameParameter("email").permitAll();
+				.usernameParameter("email").permitAll().and().logout().permitAll();
 
 		http.headers().frameOptions().sameOrigin();
 
