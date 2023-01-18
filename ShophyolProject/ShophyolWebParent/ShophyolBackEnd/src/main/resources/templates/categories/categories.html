@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments :: page_head('Categories - Shopme Admin')" />
+
+<body>
+	<div class="container-fluid">
+		<div th:replace="navigation :: menu"></div>
+		<div>
+			<h2>Manage Categories</h2>
+
+			<a th:href="@{/categories/new}" class="fa-solid fa-folder-plus fa-2x icon-dark"></a>
+			&nbsp;&nbsp;
+			<a th:href="@{/categories/export/csv}" class=" fa-solid fa-file-csv fa-2x icon-dark"></a>
+
+		</div>
+
+		<div th:if="${message != null}" class="alert alert-success text-center">
+			[[${message}]]
+		</div>
+
+		<div>
+			<form th:action="@{/users/page/1}" class="form-inline m-3">
+				<input type="hidden" name="sortField" th:value="${sortField}" />
+				<input type="hidden" name="sortDir" th:value="${sortDir}" />
+				&nbsp;&nbsp;
+				<input type="search" name="keyword" th:value="${keyword}" class="col-sm-2 col-form-label-sm"
+					placeholder=" Search" required />
+				&nbsp;&nbsp;
+				<button type="submit" value="Search" class="btn btn-primary">
+					<i class="fa-solid fa-magnifying-glass fa-1x icon-white"></i>
+				</button>
+				&nbsp;&nbsp;
+				<button type="button" value="Clear" class="btn btn-secondary" onclick="clearFilter()">
+					<i class="fa-solid fa-eraser fa-1x icon-white"></i>
+				</button>
+			</form>
+		</div>
+
+		<div class="full-details">
+			<table class="table table-bordered table-striped table-hover table-responsive-xl">
+				<thead class="table-dark">
+					<tr>
+						<th>ID</th>
+						<th>Category Image</th>
+						<th>Category Name</th>
+						<th>Alias</th>
+						<th>Enabled</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="cat : ${listCategories}">
+						<td>[[${cat.id}]]</td>
+						<td></td>
+						<td>[[${cat.name}]]</td>
+						<td>[[${cat.alias}]]</td>
+						<td>
+							<div th:replace="fragments :: category_status" />
+						</td>
+						<td>
+							<div th:replace="fragments :: category_actions" />
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+		<div th:replace="fragments :: footer"></div>
+
+	</div>
+</body>
+
+</html>
