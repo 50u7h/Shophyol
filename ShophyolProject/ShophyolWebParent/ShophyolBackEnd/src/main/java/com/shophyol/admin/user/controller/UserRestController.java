@@ -1,9 +1,11 @@
-package com.shophyol.admin.user;
+package com.shophyol.admin.user.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.shophyol.admin.user.UserService;
 
 @RestController
 public class UserRestController {

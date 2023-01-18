@@ -24,8 +24,9 @@ public class WebSecurityConfig {
 	@Bean
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
-		http.authorizeHttpRequests().anyRequest().authenticated().and().formLogin().loginPage("/login")
-				.usernameParameter("email").permitAll().and().logout().permitAll().and().rememberMe();
+		http.authorizeHttpRequests().requestMatchers("/users/**").hasAuthority("Admin").anyRequest().authenticated()
+				.and().formLogin().loginPage("/login").usernameParameter("email").permitAll().and().logout().permitAll()
+				.and().rememberMe();
 
 		http.headers().frameOptions().sameOrigin();
 

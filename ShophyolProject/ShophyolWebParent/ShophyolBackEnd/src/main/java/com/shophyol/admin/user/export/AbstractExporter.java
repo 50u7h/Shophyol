@@ -1,4 +1,4 @@
-package com.shophyol.admin.user;
+package com.shophyol.admin.user.export;
 
 import java.io.IOException;
 import java.text.DateFormat;
