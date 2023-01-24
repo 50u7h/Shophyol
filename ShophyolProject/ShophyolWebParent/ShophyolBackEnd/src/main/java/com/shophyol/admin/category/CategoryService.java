@@ -14,7 +14,10 @@ import org.springframework.stereotype.Service;
 
 import com.shophyol.common.entity.Category;
 
+import jakarta.transaction.Transactional;
+
 @Service
+@Transactional
 public class CategoryService {
 	@Autowired
 	private CategoryRepository repo;
@@ -156,7 +159,7 @@ public class CategoryService {
 
 	private SortedSet<Category> sortSubCategories(Set<Category> children, String sortDir) {
 		SortedSet<Category> sortedChildren = new TreeSet<>(new Comparator<Category>() {
-			
+
 			@Override
 			public int compare(Category cat1, Category cat2) {
 				if (sortDir.equals("asc")) {
@@ -170,5 +173,9 @@ public class CategoryService {
 		sortedChildren.addAll(children);
 
 		return sortedChildren;
+	}
+
+	public void updateCategoryEnabledStatus(Integer id, boolean enabled) {
+		repo.updateEnabledStatus(id, enabled);
 	}
 }
