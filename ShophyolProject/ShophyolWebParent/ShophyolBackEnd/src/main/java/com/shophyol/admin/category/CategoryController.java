@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
@@ -24,10 +25,17 @@ public class CategoryController {
 	private CategoryService service;
 
 	@GetMapping("/categories")
-	public String listAll(Model model) {
+	public String listAll(@Param("sortDir") String sortDir, Model model) {
+		if (sortDir == null || sortDir.isEmpty()) {
+			sortDir = "asc";
+		}
 
-		List<Category> listCategories = service.listAll();
+		List<Category> listCategories = service.listAll(sortDir);
+
+		String reverseSortDir = sortDir.equals("asc") ? "desc" : "asc";
+
 		model.addAttribute("listCategories", listCategories);
+		model.addAttribute("reverseSortDir", reverseSortDir);
 
 		return "categories/categories";
 	}
@@ -47,7 +55,7 @@ public class CategoryController {
 	@PostMapping("/categories/save")
 	public String saveCategory(Category category, @RequestParam("fileImage") MultipartFile multipartFile,
 			RedirectAttributes ra) throws IOException {
-		
+
 		if (!multipartFile.isEmpty()) {
 
 			String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
@@ -63,7 +71,7 @@ public class CategoryController {
 		}
 
 		ra.addFlashAttribute("message", "The category has been saved successfully.");
-		
+
 		return "redirect:/categories";
 	}
 
@@ -78,10 +86,10 @@ public class CategoryController {
 			model.addAttribute("pageTitle", "Edit Category (ID: " + id + ")");
 
 			return "categories/category_form";
-			
+
 		} catch (CategoryNotFoundException ex) {
 			ra.addFlashAttribute("message", ex.getMessage());
-			
+
 			return "redirect:/categories";
 		}
 	}
