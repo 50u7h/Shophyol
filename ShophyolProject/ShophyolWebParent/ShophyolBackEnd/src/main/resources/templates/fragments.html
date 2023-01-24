@@ -50,7 +50,7 @@
 		<a class="fas fa-edit fa-2x icon-green" th:href="@{'/users/edit/' + ${user.id}}" title="Edit this user"></a>
 		&nbsp;
 		<a class="fas fa-trash fa-2x icon-black link-delete" th:href="@{'/users/delete/' + ${user.id}}"
-			th:userId="${user.id}" title="Delete this user"></a>
+			th:entityId="${user.id}" title="Delete this user"></a>
 	</div>
 
 
@@ -66,8 +66,10 @@
 		<a class="fas fa-edit fa-2x icon-green" th:href="@{'/categories/edit/' + ${cat.id}}"
 			title="Edit this category"></a>
 		&nbsp;
-		<a class="fas fa-trash fa-2x icon-black link-delete" th:href="@{'/categories/delete/' + ${cat.id}}"
-			th:catId="${cat.id}" title="Delete this category"></a>
+		<th:block th:if="${cat.hasChildren == false}">
+			<a class="fas fa-trash fa-2x icon-black link-delete" th:href="@{'/categories/delete/' + ${cat.id}}"
+				th:entityId="${cat.id}" title="Delete this category"></a>
+		</th:block>
 	</div>
 
 </body>
