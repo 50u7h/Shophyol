@@ -110,6 +110,26 @@
 		</div>
 	</div>
 
+
+	<div th:fragment="search_form(moduleURL)">
+		<form th:action="@{${moduleURL}}" class="form-inline m-3">
+			<input type="hidden" name="sortField" th:value="${sortField}" />
+			<input type="hidden" name="sortDir" th:value="${sortDir}" />
+			&nbsp;&nbsp;
+			<input type="search" name="keyword" th:value="${keyword}" class="col-sm-2 col-form-label-sm"
+				placeholder=" Search" required />
+			&nbsp;&nbsp;
+			<button type="submit" value="Search" class="btn btn-primary">
+				<i class="fa-solid fa-magnifying-glass fa-1x icon-white"></i>
+			</button>
+			&nbsp;&nbsp;
+			<button type="button" value="Clear" class="btn btn-secondary" onclick="clearFilter()">
+				<i class="fa-solid fa-eraser fa-1x icon-white"></i>
+			</button>
+		</form>
+	</div>
+
+
 </body>
 
 </html>
