@@ -12,7 +12,6 @@ import com.shophyol.common.entity.Category;
 
 @Service
 public class CategoryService {
-
 	@Autowired
 	private CategoryRepository repo;
 
@@ -22,7 +21,6 @@ public class CategoryService {
 	}
 
 	private List<Category> listHierarchicalCategories(List<Category> rootCategories) {
-
 		List<Category> hierarchicalCategories = new ArrayList<>();
 
 		for (Category rootCategory : rootCategories) {
@@ -31,7 +29,7 @@ public class CategoryService {
 			Set<Category> children = rootCategory.getChildren();
 
 			for (Category subCategory : children) {
-				String name = "/-/ " + subCategory.getName();
+				String name = "--" + subCategory.getName();
 				hierarchicalCategories.add(Category.copyFull(subCategory, name));
 
 				listSubHierarchicalCategories(hierarchicalCategories, subCategory, 1);
@@ -41,15 +39,14 @@ public class CategoryService {
 		return hierarchicalCategories;
 	}
 
-	public void listSubHierarchicalCategories(List<Category> hierarchicalCategories, Category parent, int subLevel) {
-
+	private void listSubHierarchicalCategories(List<Category> hierarchicalCategories, Category parent, int subLevel) {
 		Set<Category> children = parent.getChildren();
 		int newSubLevel = subLevel + 1;
 
 		for (Category subCategory : children) {
 			String name = "";
 			for (int i = 0; i < newSubLevel; i++) {
-				name += "/-/ ";
+				name += "--";
 			}
 			name += subCategory.getName();
 
@@ -57,6 +54,11 @@ public class CategoryService {
 
 			listSubHierarchicalCategories(hierarchicalCategories, subCategory, newSubLevel);
 		}
+
+	}
+
+	public Category save(Category category) {
+		return repo.save(category);
 	}
 
 	public List<Category> listCategoriesUsedInForm() {
@@ -71,7 +73,7 @@ public class CategoryService {
 				Set<Category> children = category.getChildren();
 
 				for (Category subCategory : children) {
-					String name = "/-/ " + subCategory.getName();
+					String name = "--" + subCategory.getName();
 					categoriesUsedInForm.add(Category.copyIdAndName(subCategory.getId(), name));
 
 					listSubCategoriesUsedInForm(categoriesUsedInForm, subCategory, 1);
@@ -89,18 +91,14 @@ public class CategoryService {
 		for (Category subCategory : children) {
 			String name = "";
 			for (int i = 0; i < newSubLevel; i++) {
-				name += "/-/ ";
+				name += "--";
 			}
 			name += subCategory.getName();
 
-			categoriesUsedInForm.add(new Category(name));
+			categoriesUsedInForm.add(Category.copyIdAndName(subCategory.getId(), name));
 
 			listSubCategoriesUsedInForm(categoriesUsedInForm, subCategory, newSubLevel);
 		}
-	}
-
-	public Category save(Category category) {
-		return repo.save(category);
 	}
 
 	public Category get(Integer id) throws CategoryNotFoundException {
@@ -109,5 +107,34 @@ public class CategoryService {
 		} catch (NoSuchElementException ex) {
 			throw new CategoryNotFoundException("Could not find any category with ID " + id);
 		}
+	}
+
+	public String checkUnique(Integer id, String name, String alias) {
+		boolean isCreatingNew = (id == null || id == 0);
+
+		Category categoryByName = repo.findByName(name);
+
+		if (isCreatingNew) {
+			if (categoryByName != null) {
+				return "DuplicateName";
+			} else {
+				Category categoryByAlias = repo.findByAlias(alias);
+				if (categoryByAlias != null) {
+					return "DuplicateAlias";
+				}
+			}
+		} else {
+			if (categoryByName != null && categoryByName.getId() != id) {
+				return "DuplicateName";
+			}
+
+			Category categoryByAlias = repo.findByAlias(alias);
+			if (categoryByAlias != null && categoryByAlias.getId() != id) {
+				return "DuplicateAlias";
+			}
+
+		}
+
+		return "OK";
 	}
 }

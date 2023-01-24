@@ -3,7 +3,6 @@
 
 <head th:replace="fragments :: page_head(${pageTitle})" />
 
-
 <body>
 	<div class="container-fluid">
 		<div th:replace="navigation :: menu"></div>
@@ -88,23 +87,7 @@
 			</div>
 		</form>
 
-		<div class="modal text-center" id="modalDialog">
-			<div class="modal-dialog">
-				<div class="modal-content">
-					<div class="modal-header">
-						<h4 class="modal-title" id="modalTitle">Warning</h4>
-					</div>
-
-					<div class="modal-body">
-						<span id="modalBody"></span>
-					</div>
-
-					<div class="modal-footer">
-						<button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-					</div>
-				</div>
-			</div>
-		</div>
+		<div th:replace="modal_fragments :: modalDialog"></div>
 
 		<div th:replace="fragments :: footer"></div>
 
@@ -118,29 +101,26 @@
 			userEmail = $("#email").val();
 			userId = $("#id").val();
 			csrfValue = $("input[name='_csrf']").val();
+
 			params = {id: userId, email: userEmail, _csrf: csrfValue};
 
 			$.post(url, params, function (response) {
 				if (response == "OK") {
 					form.submit();
 				} else if (response == "Duplicated") {
-					showModalDialog("Warning", "There is another user having the email " + userEmail);
+					showWarningModal("There is another user having the email " + "\"" + userEmail + "\"");
 				} else {
-					showModalDialog("Error", "Unknown response from server");
+					showErrorModal("Unknown response from server");
 				}
 			}).fail(function () {
-				showModalDialog("Error", "Could not connect to the server");
+				showErrorModal("Could not connect to the server");
 			});
 
 			return false;
 		}
 
-		function showModalDialog(title, message) {
-			$("#modalTitle").text(title);
-			$("#modalBody").text(message);
-			$("#modalDialog").modal('show');
 
-		}
+
 
 	</script>
 	<script th:src="@{/js/common_form.js}"></script>
