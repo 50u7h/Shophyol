@@ -6,4 +6,6 @@ import com.shophyol.common.entity.Brand;
 
 public interface BrandRepository extends JpaRepository<Brand, Integer> {
 
+	public Long countById(Integer id);
+
 }
