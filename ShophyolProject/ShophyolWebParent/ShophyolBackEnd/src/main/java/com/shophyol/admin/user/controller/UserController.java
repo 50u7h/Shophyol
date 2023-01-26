@@ -43,9 +43,6 @@ public class UserController {
 	public String listByPage(@PathVariable(name = "pageNum") int pageNum, Model model,
 			@Param("sortField") String sortField, @Param("sortDir") String sortDir, @Param("keyword") String keyword) {
 
-		System.out.println("Sort Field: " + sortField);
-		System.out.println("Sort Order: " + sortDir);
-
 		Page<User> page = service.listByPage(pageNum, sortField, sortDir, keyword);
 
 		List<User> listUsers = page.getContent();
