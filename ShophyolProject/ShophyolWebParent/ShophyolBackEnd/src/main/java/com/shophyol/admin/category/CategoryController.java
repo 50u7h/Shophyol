@@ -66,7 +66,7 @@ public class CategoryController {
 	}
 
 	@GetMapping("/categories/new")
-	public String newUser(Model model) {
+	public String newCategory(Model model) {
 
 		List<Category> listCategories = service.listCategoriesUsedInForm();
 
