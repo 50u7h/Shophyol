@@ -43,7 +43,7 @@
 		<a th:if="${enabled == true}" class="fas fa-check-circle fa-2x icon-green"
 			th:href="@{${entityURL} + '/enabled/false'}" th:title="'Disable this ' + ${entityName}"></a>
 
-		<a th:if="${enabled == false}" class="fas fa-circle fa-2x icon-dark" th:href="@{${entityURL} + '/enabled/true'}"
+		<a th:if="${enabled == false}" class="fas fa-circle fa-2x icon-red" th:href="@{${entityURL} + '/enabled/true'}"
 			th:title="'Enable this ' + ${entityName}"></a>
 	</div>
 

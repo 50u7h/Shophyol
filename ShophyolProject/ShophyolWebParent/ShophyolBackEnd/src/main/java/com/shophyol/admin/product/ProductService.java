@@ -8,7 +8,10 @@ import org.springframework.stereotype.Service;
 
 import com.shophyol.common.entity.Product;
 
+import jakarta.transaction.Transactional;
+
 @Service
+@Transactional
 public class ProductService {
 
 	@Autowired
@@ -53,5 +56,9 @@ public class ProductService {
 		}
 
 		return "OK";
+	}
+
+	public void updateProductEnabledStatus(Integer id, boolean enabled) {
+		repo.updateEnabledStatus(id, enabled);
 	}
 }
