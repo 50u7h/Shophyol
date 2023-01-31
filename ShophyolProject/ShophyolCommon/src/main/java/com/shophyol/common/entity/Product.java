@@ -14,6 +14,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.persistence.Transient;
 
 @Entity
 @Table(name = "products")
@@ -243,6 +244,15 @@ public class Product {
 				+ updatedTime + ", enabled=" + enabled + ", inStock=" + inStock + ", cost=" + cost + ", price=" + price
 				+ ", discountPercent=" + discountPercent + ", length=" + length + ", width=" + width + ", height="
 				+ height + ", weight=" + weight + ", category=" + category + ", brand=" + brand + "]";
+	}
+
+	@Transient
+	public String getMainImagePath() {
+		if (id == null || mainImage == null) {
+			return "/images/image-thumbnail.png";
+		}
+
+		return "/product-images/" + this.id + "/" + this.mainImage;
 	}
 
 }
