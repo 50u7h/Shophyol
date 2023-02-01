@@ -145,7 +145,7 @@ public class ProductRepositoryTests {
 
 	@Test
 	public void testSaveProductWithDetails() {
-		Integer productId = 1;
+		Integer productId = 10;
 		Product product = repo.findById(productId).get();
 
 		product.addDetail("Device Memory", "128 GB");
