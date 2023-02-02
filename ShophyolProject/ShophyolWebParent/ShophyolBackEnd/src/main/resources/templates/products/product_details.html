@@ -3,7 +3,36 @@
 
 <body>
 	<div th:fragment="content" id="divProductDetails">
-		<div class="row g-3 align-items-center" id="divDetail0">
+		<th:block th:each="detail, status : ${product.details}">
+
+			<div class="row g-3 align-items-center" th:id="'divDetail' + ${status.index}">
+
+				<div class="col-auto">
+					<label for="name" class="col-form-label">Name:</label>
+				</div>
+				<div class="col-auto">
+					<input type="text" id="name" class="form-control" style="width: 400px;" name="detailNames"
+						th:value="${detail.name}">
+				</div>
+
+				<div class="col-auto" style="margin-left: 50px;">
+					<label for="value" class="col-form-label">Value:</label>
+				</div>
+				<div class="col-auto">
+					<input type="text" id="value" class="form-control" style="width: 400px;" name="detailValues"
+						th:value="${detail.value}">
+				</div>
+
+				<a name="linkRemoveDetail" class="btn fas fa-times-circle fa-2x icon-red" title="Remove this detail"
+					style="width: 58px; "></a>
+
+			</div>
+
+		</th:block>
+
+
+
+		<div class="row g-3 align-items-center" th:id="'divDetail' + ${#lists.size(product.details)}">
 			<div class="col-auto">
 				<label for="name" class="col-form-label">Name:</label>
 			</div>
