@@ -62,4 +62,10 @@ public class ProductImage {
 		return "/product-images/" + product.getId() + "/extras/" + this.name;
 	}
 
+	public ProductImage(Integer id, String name, Product product) {
+		this.id = id;
+		this.name = name;
+		this.product = product;
+	}
+
 }

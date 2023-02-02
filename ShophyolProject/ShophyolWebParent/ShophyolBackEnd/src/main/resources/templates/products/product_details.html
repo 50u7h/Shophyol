@@ -6,6 +6,7 @@
 		<th:block th:each="detail, status : ${product.details}">
 
 			<div class="row g-3 align-items-center" th:id="'divDetail' + ${status.index}">
+				<input type="hidden" name="detailIDs" th:value="${detail.id}" />
 
 				<div class="col-auto">
 					<label for="name" class="col-form-label">Name:</label>
@@ -33,6 +34,7 @@
 
 
 		<div class="row g-3 align-items-center" th:id="'divDetail' + ${#lists.size(product.details)}">
+			<input type="hidden" name="detailIDs" value="0" />
 			<div class="col-auto">
 				<label for="name" class="col-form-label">Name:</label>
 			</div>

@@ -13,6 +13,7 @@ function addNextDetailSection() {
 
 	htmlDetailSection = `
 		<div class="row g-3" id="divDetail${divDetailsCount}">
+		<input type="hidden" name="detailIDs" value="0" />
 			<div class="col-auto">
 				<label for="name" class="col-form-label">Name:</label>
 			</div>
