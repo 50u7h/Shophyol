@@ -1,4 +1,4 @@
-package com.shophyol.site;
+package com.shophyol;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

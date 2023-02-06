@@ -1,13 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
-
-<head>
-	<meta charset="UTF-8">
-	<title>Welcome to Shophyol</title>
-</head>
-
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+<head th:replace="fragments :: page_head('Shophyol', 'none')" />
 <body>
-	<h1>Welcome to Shophyol eCommerce</h1>
+<div class="container-fluid">
+	<div th:replace="navigation :: header_menu"></div>
+	<div>
+		<h1>Welcome to Shophyol eCommerce</h1>
+	</div>
+	
+	<div th:replace="navigation :: footer_menu"></div>
+</div>	
 </body>
-
 </html>

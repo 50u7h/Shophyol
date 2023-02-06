@@ -1,4 +1,4 @@
-package com.shophyol.site;
+package com.shophyol;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
