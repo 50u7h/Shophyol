@@ -17,6 +17,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.shophyol.admin.FileUploadUtil;
 import com.shophyol.common.entity.Category;
+import com.shophyol.common.exception.CategoryNotFoundException;
 
 import jakarta.servlet.http.HttpServletResponse;
 

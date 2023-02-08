@@ -12,12 +12,10 @@
 
 		<div class="row">
 			<div class="col" th:each="cat : ${listCategories}">
-				<div>
+				<a style="text-decoration:none" th:href="@{'/c/' + ${cat.alias}}">
 					<img th:src="@{${cat.imagePath}}" width="100" />
-				</div>
-				<div>
-					<a style="text-decoration:none" th:href="@{'/c/' + ${cat.alias}}">[[${cat.name}]]</a>
-				</div>
+					<b>[[${cat.name}]]</b>
+				</a>
 			</div>
 		</div>
 

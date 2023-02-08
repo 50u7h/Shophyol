@@ -1,4 +1,4 @@
-package com.shophyol.admin.product;
+package com.shophyol.common.exception;
 
 public class ProductNotFoundException extends Exception {
 

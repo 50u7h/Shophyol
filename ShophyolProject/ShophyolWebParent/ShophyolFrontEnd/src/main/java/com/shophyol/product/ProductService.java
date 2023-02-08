@@ -7,6 +7,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.shophyol.common.entity.Product;
+import com.shophyol.common.exception.ProductNotFoundException;
 
 @Service
 public class ProductService {
@@ -16,11 +17,21 @@ public class ProductService {
 	@Autowired
 	private ProductRepository repo;
 
-	public Page<Product> listByCategories(int pageNum, Integer categoryId) {
+	public Page<Product> listByCategory(int pageNum, Integer categoryId) {
 
 		String categoryIdMatchString = "-" + String.valueOf(categoryId) + "-";
 		Pageable pageable = PageRequest.of(pageNum - 1, PRODUCTS_PER_PAGE);
 
 		return repo.listByCategory(categoryId, categoryIdMatchString, pageable);
+	}
+
+	public Product getProduct(String alias) throws ProductNotFoundException {
+		Product product = repo.findByAlias(alias);
+
+		if (product == null) {
+			throw new ProductNotFoundException("Could not find any product with alias " + alias);
+		}
+
+		return product;
 	}
 }

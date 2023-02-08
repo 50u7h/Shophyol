@@ -16,6 +16,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.shophyol.common.entity.Category;
+import com.shophyol.common.exception.CategoryNotFoundException;
 
 import jakarta.transaction.Transactional;
 

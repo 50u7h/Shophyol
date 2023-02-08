@@ -1,4 +1,4 @@
-package com.shophyol.admin.category;
+package com.shophyol.common.exception;
 
 public class CategoryNotFoundException extends Exception {
 

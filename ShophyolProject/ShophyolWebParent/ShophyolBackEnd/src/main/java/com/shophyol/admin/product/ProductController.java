@@ -23,6 +23,7 @@ import com.shophyol.admin.security.ShophyolUserDetails;
 import com.shophyol.common.entity.Brand;
 import com.shophyol.common.entity.Category;
 import com.shophyol.common.entity.Product;
+import com.shophyol.common.exception.ProductNotFoundException;
 
 @Controller
 public class ProductController {
