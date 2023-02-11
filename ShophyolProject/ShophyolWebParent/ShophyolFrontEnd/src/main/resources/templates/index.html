@@ -7,14 +7,14 @@
 	<div class="container-fluid">
 		<div th:replace="navigation :: header_menu"></div>
 		<div th:replace="navigation :: search_nav"></div>
-<br>
+		<br>
 
 		<div>
 			<h1>Shopping by Categories</h1>
 		</div>
 
 		<div class="row">
-			<div class="col-sm-2" th:each="cat : ${listCategories}">
+			<div class="col" th:each="cat : ${listCategories}">
 				<a style="text-decoration:none" th:href="@{'/c/' + ${cat.alias}}">
 					<img th:src="@{${cat.imagePath}}" width="100" />
 					<b>[[${cat.name}]]</b>
