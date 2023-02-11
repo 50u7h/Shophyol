@@ -31,7 +31,7 @@ public class SettingController {
 
 	@GetMapping("/settings")
 	public String listAll(Model model) {
-		
+
 		List<Setting> listSettings = service.listAllSettings();
 		List<Currency> listCurrencies = currencyRepo.findAllByOrderByNameAsc();
 
@@ -63,7 +63,7 @@ public class SettingController {
 	private void saveSiteLogo(MultipartFile multipartFile, GeneralSettingBag settingBag) throws IOException {
 
 		if (!multipartFile.isEmpty()) {
-			
+
 			String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
 			String value = "/site-logo/" + fileName;
 			settingBag.updateSiteLogo(value);
@@ -75,7 +75,7 @@ public class SettingController {
 	}
 
 	private void saveCurrencySymbol(HttpServletRequest request, GeneralSettingBag settingBag) {
-		
+
 		Integer currencyId = Integer.parseInt(request.getParameter("CURRENCY_ID"));
 		Optional<Currency> findByIdResult = currencyRepo.findById(currencyId);
 
@@ -96,6 +96,26 @@ public class SettingController {
 		}
 
 		service.saveAll(listSettings);
+	}
+
+	@PostMapping("/settings/save_mail_server")
+	public String saveMailServerSetttings(HttpServletRequest request, RedirectAttributes ra) {
+		List<Setting> mailServerSettings = service.getMailServerSettings();
+		updateSettingValuesFromForm(request, mailServerSettings);
+
+		ra.addFlashAttribute("message", "Mail server settings have been saved");
+
+		return "redirect:/settings#mailServer";
+	}
+
+	@PostMapping("/settings/save_mail_templates")
+	public String saveMailTemplateSetttings(HttpServletRequest request, RedirectAttributes ra) {
+		List<Setting> mailTemplateSettings = service.getMailTemplateSettings();
+		updateSettingValuesFromForm(request, mailTemplateSettings);
+
+		ra.addFlashAttribute("message", "Mail template settings have been saved");
+
+		return "redirect:/settings#mailTemplates";
 	}
 
 }
