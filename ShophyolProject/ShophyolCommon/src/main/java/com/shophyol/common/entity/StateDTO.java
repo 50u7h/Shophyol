@@ -1,4 +1,4 @@
-package com.shophyol.admin.setting.state;
+package com.shophyol.common.entity;
 
 public class StateDTO {
 
