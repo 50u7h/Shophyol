@@ -11,9 +11,11 @@ import com.shophyol.common.entity.Country;
 import com.shophyol.common.entity.Customer;
 import com.shophyol.setting.CountryRepository;
 
+import jakarta.transaction.Transactional;
 import net.bytebuddy.utility.RandomString;
 
 @Service
+@Transactional
 public class CustomerService {
 
 	@Autowired
@@ -51,5 +53,16 @@ public class CustomerService {
 	private void encodePassword(Customer customer) {
 		String encodedPassword = passwordEncoder.encode(customer.getPassword());
 		customer.setPassword(encodedPassword);
+	}
+
+	public boolean verify(String verificationCode) {
+		Customer customer = customerRepo.findByVerificationCode(verificationCode);
+
+		if (customer == null || customer.isEnabled()) {
+			return false;
+		} else {
+			customerRepo.enable(customer.getId());
+			return true;
+		}
 	}
 }
