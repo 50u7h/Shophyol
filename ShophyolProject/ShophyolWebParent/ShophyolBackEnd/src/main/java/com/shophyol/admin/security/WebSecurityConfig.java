@@ -32,8 +32,10 @@ public class WebSecurityConfig {
 				.hasAnyAuthority("Admin", "Editor", "Salesperson")
 				.requestMatchers("/products", "/products/", "/products/detail/**", "/products/page/**")
 				.hasAnyAuthority("Admin", "Editor", "Salesperson", "Shipper").requestMatchers("/products/**")
-				.hasAnyAuthority("Admin", "Editor").anyRequest().authenticated().and().formLogin().loginPage("/login")
-				.usernameParameter("email").permitAll().and().logout().permitAll().and().rememberMe();
+				.hasAnyAuthority("Admin", "Editor").requestMatchers("/customers/**")
+				.hasAnyAuthority("Admin", "Salesperson").anyRequest().authenticated().and().formLogin()
+				.loginPage("/login").usernameParameter("email").permitAll().and().logout().permitAll().and()
+				.rememberMe();
 
 		http.headers().frameOptions().sameOrigin();
 
