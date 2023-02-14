@@ -27,12 +27,7 @@ spring:
             scope:
             - email
             - profile
-          facebook:
-            clientId: 
-            clientSecret: 
-            scope:
-            - email
-            - public_profile  
+
 
   main:
     allow-circular-references: true          

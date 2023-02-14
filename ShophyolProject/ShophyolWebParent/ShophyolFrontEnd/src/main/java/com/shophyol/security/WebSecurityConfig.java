@@ -31,10 +31,11 @@ public class WebSecurityConfig {
 	@Bean
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
-		http.authorizeHttpRequests().requestMatchers("/customer").authenticated().anyRequest().permitAll().and()
-				.formLogin().loginPage("/login").usernameParameter("email").successHandler(databaseLoginHandler)
-				.permitAll().and().oauth2Login().loginPage("/login").userInfoEndpoint().userService(oAuth2UserService)
-				.and().successHandler(oauth2LoginHandler).and().logout().permitAll().and().rememberMe();
+		http.authorizeHttpRequests().requestMatchers("/account_details", "/update_account_details").authenticated()
+				.anyRequest().permitAll().and().formLogin().loginPage("/login").usernameParameter("email")
+				.successHandler(databaseLoginHandler).permitAll().and().oauth2Login().loginPage("/login")
+				.userInfoEndpoint().userService(oAuth2UserService).and().successHandler(oauth2LoginHandler).and()
+				.logout().permitAll().and().rememberMe();
 
 		http.headers().frameOptions().sameOrigin();
 
