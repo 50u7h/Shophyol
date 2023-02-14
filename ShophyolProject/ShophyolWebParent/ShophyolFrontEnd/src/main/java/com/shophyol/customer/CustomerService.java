@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.shophyol.common.entity.AuthenticationType;
 import com.shophyol.common.entity.Country;
 import com.shophyol.common.entity.Customer;
 import com.shophyol.setting.CountryRepository;
@@ -63,6 +64,13 @@ public class CustomerService {
 		} else {
 			customerRepo.enable(customer.getId());
 			return true;
+		}
+	}
+
+	public void updateAuthentication(Customer customer, AuthenticationType type) {
+		
+		if (!customer.getAuthenticationType().equals(type)) {
+			customerRepo.updateAuthenticationType(customer.getId(), type);
 		}
 	}
 }

@@ -52,41 +52,42 @@
 							<input type="search" name="keyword" class="form-control mr-sm-2" th:value="${keyword}"
 								placeholder="Search" required />
 						</div>
-						&nbsp;&nbsp;
+						&nbsp;
 						<div class="col-auto">
 							<input type="submit" value="Search" class="btn btn-outline-success" />
 						</div>
 					</form>
-
+					&nbsp;&nbsp;&nbsp;&nbsp;
 					<ul class="navbar-nav">
 						<th:block sec:authorize="isAuthenticated()">
 							<li class="nav-item">
-								<b><a class="nav-link" th:href="@{/customer}"
-										sec:authentication="principal.fullName"></a></b>
+								<b><a class="nav-link" th:href="@{/customer}" sec:authentication="principal.fullName"
+										style="color:rgb(0, 64, 0);"></a></b>
 							</li>
 
 							<li class="nav-item">
-								<a class="nav-link" href="">Addresses</a>
+								<a class="nav-link" href="" style="color:rgb(0, 64, 0);">Addresses</a>
 							</li>
 
 							<li class="nav-item">
-								<a class="nav-link" href="">Questions</a>
+								<a class="nav-link" href="" style="color:rgb(0, 64, 0);">Questions</a>
 							</li>
 
 							<li class="nav-item">
-								<a class="nav-link" href="">Reviews</a>
+								<a class="nav-link" href="" style="color:rgb(0, 64, 0);">Reviews</a>
 							</li>
 
 							<li class="nav-item">
-								<a class="nav-link" href="">Orders</a>
+								<a class="nav-link" href="" style="color:rgb(0, 64, 0);">Orders</a>
 							</li>
 
 							<li class="nav-item">
-								<a class="nav-link" href="">Cart</a>
+								<a class="nav-link" href="" style="color:rgb(0, 64, 0);">Cart</a>
 							</li>
 
 							<li class="nav-item">
-								<a class="nav-link" href="javascript: document.logoutForm.submit()">Logout</a>
+								<a class="nav-link" href="javascript: document.logoutForm.submit()"
+									style="color:rgb(0, 64, 0);">Logout</a>
 							</li>
 						</th:block>
 					</ul>

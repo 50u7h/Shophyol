@@ -13,6 +13,7 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.test.annotation.Rollback;
 
+import com.shophyol.common.entity.AuthenticationType;
 import com.shophyol.common.entity.Country;
 import com.shophyol.common.entity.Customer;
 
@@ -141,5 +142,15 @@ public class CustomerRepositoryTests {
 
 		Customer customer = repo.findById(customerId).get();
 		assertThat(customer.isEnabled()).isTrue();
+	}
+
+	@Test
+	public void testUpdateAuthenticationType() {
+		Integer id = 1;
+		repo.updateAuthenticationType(id, AuthenticationType.DATABASE);
+
+		Customer customer = repo.findById(id).get();
+
+		assertThat(customer.getAuthenticationType()).isEqualTo(AuthenticationType.DATABASE);
 	}
 }
