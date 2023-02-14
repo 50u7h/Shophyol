@@ -1,5 +1,6 @@
 package com.shophyol.security;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -11,16 +12,29 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
+import com.shophyol.security.oauth.CustomerOAuth2UserService;
+import com.shophyol.security.oauth.OAuth2LoginSuccessHandler;
+
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig {
+
+	@Autowired
+	private CustomerOAuth2UserService oAuth2UserService;
+
+	@Autowired
+	private OAuth2LoginSuccessHandler oauth2LoginHandler;
+
+	@Autowired
+	private DatabaseLoginSuccessHandler databaseLoginHandler;
 
 	@Bean
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
 		http.authorizeHttpRequests().requestMatchers("/customer").authenticated().anyRequest().permitAll().and()
-				.formLogin().loginPage("/login").usernameParameter("email").permitAll().and().logout().permitAll().and()
-				.rememberMe();
+				.formLogin().loginPage("/login").usernameParameter("email").successHandler(databaseLoginHandler)
+				.permitAll().and().oauth2Login().loginPage("/login").userInfoEndpoint().userService(oAuth2UserService)
+				.and().successHandler(oauth2LoginHandler).and().logout().permitAll().and().rememberMe();
 
 		http.headers().frameOptions().sameOrigin();
 
@@ -51,4 +65,5 @@ public class WebSecurityConfig {
 
 		return authProvider;
 	}
+
 }
