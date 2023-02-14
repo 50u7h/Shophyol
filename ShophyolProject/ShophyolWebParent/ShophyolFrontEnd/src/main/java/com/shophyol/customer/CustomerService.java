@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.shophyol.common.entity.AuthenticationType;
 import com.shophyol.common.entity.Country;
 import com.shophyol.common.entity.Customer;
+import com.shophyol.common.exception.CustomerNotFoundException;
 import com.shophyol.setting.CountryRepository;
 
 import jakarta.transaction.Transactional;
@@ -76,11 +77,13 @@ public class CustomerService {
 	}
 
 	public Customer getCustomerByEmail(String email) {
+		
 		return customerRepo.findByEmail(email);
 	}
 
 	public void addNewCustomerUponOAuthLogin(String name, String email, String countryCode,
 			AuthenticationType authenticationType) {
+		
 		Customer customer = new Customer();
 		customer.setEmail(email);
 		setName(name, customer);
@@ -100,7 +103,9 @@ public class CustomerService {
 	}
 
 	private void setName(String name, Customer customer) {
+		
 		String[] nameArray = name.split(" ");
+		
 		if (nameArray.length < 2) {
 			customer.setFirstName(name);
 			customer.setLastName("");
@@ -132,8 +137,44 @@ public class CustomerService {
 		customerInForm.setCreatedTime(customerInDB.getCreatedTime());
 		customerInForm.setVerificationCode(customerInDB.getVerificationCode());
 		customerInForm.setAuthenticationType(customerInDB.getAuthenticationType());
+		customerInForm.setResetPasswordToken(customerInDB.getResetPasswordToken());
 
 		customerRepo.save(customerInForm);
+	}
+
+	public String updateResetPasswordToken(String email) throws CustomerNotFoundException {
+		
+		Customer customer = customerRepo.findByEmail(email);
+		
+		if (customer != null) {
+			String token = RandomString.make(30);
+			customer.setResetPasswordToken(token);
+			customerRepo.save(customer);
+
+			return token;
+		} else {
+			throw new CustomerNotFoundException("Could not find any customer with the email " + email);
+		}
+	}
+
+	public Customer getByResetPasswordToken(String token) {
+		
+		return customerRepo.findByResetPasswordToken(token);
+	}
+
+	public void updatePassword(String token, String newPassword) throws CustomerNotFoundException {
+		
+		Customer customer = customerRepo.findByResetPasswordToken(token);
+		
+		if (customer == null) {
+			throw new CustomerNotFoundException("No customer found: invalid token");
+		}
+
+		customer.setPassword(newPassword);
+		customer.setResetPasswordToken(null);
+		encodePassword(customer);
+
+		customerRepo.save(customer);
 	}
 
 }
