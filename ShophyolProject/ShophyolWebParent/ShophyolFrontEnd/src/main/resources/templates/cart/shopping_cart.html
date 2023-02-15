@@ -21,8 +21,7 @@
 							<div class="divCount">[[${status.count}]]</div>
 							<div>
 								<a class="fas fa-trash fa-xl icon-red linkRemove" th:rowNumber="${status.count}"
-									th:href="@{'/cart/remove/' + ${product.id}}"
-									style=""></a>
+									th:href="@{'/cart/remove/' + ${product.id}}" style=""></a>
 							</div>
 						</div>
 						<div class="col-3">
@@ -91,6 +90,10 @@
 		contextPath = "[[@{/}]]";
 		var csrfHeaderName = "[[${_csrf.headerName}]]";
 		var csrfValue = "[[${_csrf.token}]]";
+
+		decimalDigits = "[[${DECIMAL_DIGITS}]]";
+		decimalPointType = "[[${DECIMAL_POINT_TYPE}]]";
+		thousandsPointType = "[[${THOUSANDS_POINT_TYPE}]]";
 	</script>
 
 	<script type="text/javascript" th:src="@{/js/jquery.number.min.js}"></script>
