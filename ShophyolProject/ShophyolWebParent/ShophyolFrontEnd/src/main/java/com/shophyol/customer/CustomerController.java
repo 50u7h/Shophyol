@@ -4,7 +4,6 @@ import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.query.Param;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.security.authentication.RememberMeAuthenticationToken;
@@ -92,7 +91,7 @@ public class CustomerController {
 	}
 
 	@GetMapping("/verify")
-	public String verifyAccount(@Param("code") String code, Model model) {
+	public String verifyAccount(String code, Model model) {
 
 		boolean verified = customerService.verify(code);
 
