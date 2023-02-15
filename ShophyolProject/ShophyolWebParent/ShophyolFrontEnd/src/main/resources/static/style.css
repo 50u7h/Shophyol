@@ -1,0 +1,50 @@
+*.icon-white {
+	color: white
+}
+
+*.icon-silver {
+	color: silver
+}
+
+*.icon-green {
+	color: green
+}
+
+*.icon-black {
+	color: black
+}
+
+*.icon-red {
+	color: red
+}
+
+*.icon-gray {
+	color: gray
+}
+
+*.icon-dark {
+	color: dimgray
+}
+
+*.icon-blue {
+	color: rgb(0, 128, 255)
+}
+
+.icon-orange {
+	color: rgb(209, 113, 5)
+}
+
+a {
+	text-decoration: none !important;
+	outline: none !important;
+}
+
+img.center {
+	display: block;
+	margin: 0 auto;
+}
+
+tr {
+	text-align: center;
+}
+

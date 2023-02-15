@@ -32,12 +32,12 @@ public class WebSecurityConfig {
 	@Bean
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
-		http.authorizeHttpRequests().requestMatchers("/account_details", "/update_account_details").authenticated()
-				.anyRequest().permitAll().and().formLogin().loginPage("/login").usernameParameter("email")
-				.successHandler(databaseLoginHandler).permitAll().and().oauth2Login().loginPage("/login")
-				.userInfoEndpoint().userService(oAuth2UserService).and().successHandler(oauth2LoginHandler).and()
-				.logout().permitAll().and().rememberMe().and().sessionManagement()
-				.sessionCreationPolicy(SessionCreationPolicy.ALWAYS);
+		http.authorizeHttpRequests().requestMatchers("/account_details", "/update_account_details", "/cart")
+				.authenticated().anyRequest().permitAll().and().formLogin().loginPage("/login")
+				.usernameParameter("email").successHandler(databaseLoginHandler).permitAll().and().oauth2Login()
+				.loginPage("/login").userInfoEndpoint().userService(oAuth2UserService).and()
+				.successHandler(oauth2LoginHandler).and().logout().permitAll().and().rememberMe().and()
+				.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.ALWAYS);
 
 		http.headers().frameOptions().sameOrigin();
 
