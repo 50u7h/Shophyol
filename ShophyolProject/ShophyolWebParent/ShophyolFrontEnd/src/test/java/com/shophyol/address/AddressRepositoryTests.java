@@ -1,4 +1,4 @@
-package com.shophyol.admin.address;
+package com.shophyol.address;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
