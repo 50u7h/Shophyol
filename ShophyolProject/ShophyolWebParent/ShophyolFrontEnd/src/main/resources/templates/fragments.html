@@ -12,19 +12,17 @@
 	<link rel="stylesheet" type="text/css" th:href="@{/style.css}" />
 	<script type="text/javascript" th:src="@{/webjars/jquery/jquery.min.js}"></script>
 	<script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}"></script>
-
 </head>
 
 <body>
 
-	<a th:fragment="page_link(moduleURL, pageNum, label)" class="page-link" style="text-align:center"
-		th:href="@{${moduleURL} + '/page/' + ${pageNum} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir} + ${keyword != null ? '&keyword=' + keyword : ''} + ${categoryId != null ? '&categoryId=' + categoryId : ''}}">[[${label}]]</a>
+	<a th:fragment="page_link(moduleURL, pageNum, label)" class="page-link"
+		th:href="@{${moduleURL} + '/page/' + ${pageNum} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir} + ${keyword != null ? '&keyword=' + keyword : ''}}">[[${label}]]</a>
 
 	<div th:fragment="pagination(moduleURL, entityName)" th:remove="tag">
 		<div class="text-center m-1" th:if="${totalItems > 0}">
 			<span>Showing [[${entityName}]] # [[${startCount}]] to [[${endCount}]] of [[${totalItems}]]</span>
 		</div>
-
 		<div class="text-center m-1" th:unless="${totalItems > 0}">
 			<span>No [[${entityName}]] found</span>
 		</div>
@@ -35,7 +33,6 @@
 					<li th:class="${currentPage > 1 ? 'page-item' : 'page-item disabled'}">
 						<a th:replace="fragments :: page_link(${moduleURL}, 1, 'First')"></a>
 					</li>
-
 					<li th:class="${currentPage > 1 ? 'page-item' : 'page-item disabled'}">
 						<a th:replace="fragments :: page_link(${moduleURL}, ${currentPage - 1}, 'Previous')"></a>
 					</li>
@@ -57,11 +54,12 @@
 		</div>
 	</div>
 
-	<div th:fragment="modal_dialog" class="modal fade text-center" id="modalDialog">
+	<div th:fragment="modalDialog" class="modal fade text-center" id="modalDialog">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
 					<h4 class="modal-title" id="modalTitle">Warning</h4>
+					<button type="button" class="close" data-bs-dismiss="modal">&times;</button>
 				</div>
 
 				<div class="modal-body">
@@ -70,6 +68,25 @@
 
 				<div class="modal-footer">
 					<button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div th:fragment="confirmModal" class="modal fade text-center" id="confirmModal">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title">Delete Confirmation</h4>
+				</div>
+
+				<div class="modal-body">
+					<span id="confirmText"></span>
+				</div>
+
+				<div class="modal-footer">
+					<a class="btn btn-success" href="" id="yesButton">Yes</a>
+					<button type="button" class="btn btn-danger" data-bs-dismiss="modal">No</button>
 				</div>
 			</div>
 		</div>
