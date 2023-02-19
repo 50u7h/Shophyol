@@ -1,4 +1,6 @@
-package com.shophyol.common.entity;
+package com.shophyol.common.entity.order;
+
+import com.shophyol.common.entity.product.Product;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

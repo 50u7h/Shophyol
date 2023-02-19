@@ -5,7 +5,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
-import com.shophyol.common.entity.Order;
+import com.shophyol.common.entity.order.Order;
 
 public interface OrderRepository extends JpaRepository<Order, Integer> {
 

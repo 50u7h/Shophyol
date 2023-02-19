@@ -1,4 +1,4 @@
-package com.shophyol.common.entity;
+package com.shophyol.common.entity.product;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

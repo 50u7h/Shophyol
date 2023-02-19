@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.shophyol.common.entity.CartItem;
 import com.shophyol.common.entity.Customer;
-import com.shophyol.common.entity.Product;
+import com.shophyol.common.entity.product.Product;
 import com.shophyol.product.ProductRepository;
 
 import jakarta.transaction.Transactional;

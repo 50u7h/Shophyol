@@ -10,7 +10,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.shophyol.admin.paging.PagingAndSortingHelper;
-import com.shophyol.common.entity.Order;
+import com.shophyol.common.entity.order.Order;
 
 @Service
 public class OrderService {

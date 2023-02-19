@@ -1,4 +1,4 @@
-package com.shophyol.common.entity;
+package com.shophyol.common.entity.setting;
 
 public enum SettingCategory {
 	GENERAL, MAIL_SERVER, MAIL_TEMPLATES, CURRENCY, PAYMENT

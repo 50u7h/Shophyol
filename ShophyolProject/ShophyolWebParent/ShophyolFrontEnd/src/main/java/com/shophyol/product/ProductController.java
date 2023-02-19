@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import com.shophyol.category.CategoryService;
 import com.shophyol.common.entity.Category;
-import com.shophyol.common.entity.Product;
+import com.shophyol.common.entity.product.Product;
 import com.shophyol.common.exception.CategoryNotFoundException;
 import com.shophyol.common.exception.ProductNotFoundException;
 

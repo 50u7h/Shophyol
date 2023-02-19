@@ -12,8 +12,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.shophyol.admin.paging.PagingAndSortingHelper;
 import com.shophyol.admin.paging.PagingAndSortingParam;
 import com.shophyol.admin.setting.SettingService;
-import com.shophyol.common.entity.Order;
-import com.shophyol.common.entity.Setting;
+import com.shophyol.common.entity.order.Order;
+import com.shophyol.common.entity.setting.Setting;
 
 import jakarta.servlet.http.HttpServletRequest;
 

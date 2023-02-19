@@ -1,8 +1,10 @@
-package com.shophyol.common.entity;
+package com.shophyol.common.entity.order;
 
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
+
+import com.shophyol.common.entity.Customer;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;

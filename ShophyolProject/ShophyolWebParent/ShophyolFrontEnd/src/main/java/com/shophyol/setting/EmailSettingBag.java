@@ -2,8 +2,8 @@ package com.shophyol.setting;
 
 import java.util.List;
 
-import com.shophyol.common.entity.Setting;
-import com.shophyol.common.entity.SettingBag;
+import com.shophyol.common.entity.setting.Setting;
+import com.shophyol.common.entity.setting.SettingBag;
 
 public class EmailSettingBag extends SettingBag {
 

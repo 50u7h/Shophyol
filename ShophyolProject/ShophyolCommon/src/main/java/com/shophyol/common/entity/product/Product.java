@@ -1,4 +1,4 @@
-package com.shophyol.common.entity;
+package com.shophyol.common.entity.product;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -6,6 +6,9 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
+
+import com.shophyol.common.entity.Brand;
+import com.shophyol.common.entity.Category;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
