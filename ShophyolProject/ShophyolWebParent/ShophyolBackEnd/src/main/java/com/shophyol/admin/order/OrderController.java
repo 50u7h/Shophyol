@@ -54,7 +54,7 @@ public class OrderController {
 	@GetMapping("/orders/detail/{id}")
 	public String viewOrderDetails(@PathVariable("id") Integer id, Model model, RedirectAttributes ra,
 			HttpServletRequest request) {
-		
+
 		try {
 			Order order = orderService.get(id);
 			loadCurrencySetting(request);
@@ -63,8 +63,22 @@ public class OrderController {
 			return "orders/order_details_modal";
 		} catch (OrderNotFoundException ex) {
 			ra.addFlashAttribute("message", ex.getMessage());
+
 			return defaultRedirectURL;
 		}
+	}
+
+	@GetMapping("/orders/delete/{id}")
+	public String deleteOrder(@PathVariable(name = "id") Integer id, Model model, RedirectAttributes ra) {
+
+		try {
+			orderService.delete(id);
+			ra.addFlashAttribute("message", "The order ID " + id + " has been deleted.");
+		} catch (OrderNotFoundException ex) {
+			ra.addFlashAttribute("message", ex.getMessage());
+		}
+
+		return defaultRedirectURL;
 
 	}
 }

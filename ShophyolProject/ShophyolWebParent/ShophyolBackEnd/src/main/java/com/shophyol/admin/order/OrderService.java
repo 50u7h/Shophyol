@@ -55,4 +55,14 @@ public class OrderService {
 			throw new OrderNotFoundException("Could not find any orders with ID " + id);
 		}
 	}
+
+	public void delete(Integer id) throws OrderNotFoundException {
+
+		Integer count = repo.countById(id);
+
+		if (count == null || count == 0) {
+			throw new OrderNotFoundException("Could not find order with ID " + id);
+		}
+		repo.deleteById(id);
+	}
 }

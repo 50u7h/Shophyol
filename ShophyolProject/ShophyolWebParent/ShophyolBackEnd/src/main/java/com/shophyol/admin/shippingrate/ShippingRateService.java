@@ -26,10 +26,12 @@ public class ShippingRateService {
 	private CountryRepository countryRepo;
 
 	public void listByPage(int pageNum, PagingAndSortingHelper helper) {
+
 		helper.listEntities(pageNum, RATES_PER_PAGE, shipRepo);
 	}
 
 	public List<Country> listAllCountries() {
+
 		return countryRepo.findAllByOrderByNameAsc();
 	}
 
@@ -48,6 +50,7 @@ public class ShippingRateService {
 	}
 
 	public ShippingRate get(Integer id) throws ShippingRateNotFoundException {
+
 		try {
 			return shipRepo.findById(id).get();
 		} catch (NoSuchElementException ex) {
@@ -56,6 +59,7 @@ public class ShippingRateService {
 	}
 
 	public void updateCODSupport(Integer id, boolean codSupported) throws ShippingRateNotFoundException {
+
 		Long count = shipRepo.countById(id);
 
 		if (count == null || count == 0) {
@@ -66,6 +70,7 @@ public class ShippingRateService {
 	}
 
 	public void delete(Integer id) throws ShippingRateNotFoundException {
+
 		Long count = shipRepo.countById(id);
 
 		if (count == null || count == 0) {
