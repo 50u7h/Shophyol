@@ -58,7 +58,7 @@
 					<div th:replace="settings/mail_templates/mail_templates :: content"></div>
 				</div>
 				<div class="tab-pane" id="payment" role="tabpanel">
-					<h2>Payment</h2>
+					<div th:replace="settings/payment :: content"></div>
 				</div>
 			</div>
 		</div>
@@ -78,13 +78,14 @@
 
 	</div>
 	<script type="text/javascript">
-		MAX_FILE_SIZE = 102400; 
+		MAX_FILE_SIZE = 102400;
 		contextPath = "[[@{/}]]";
 		var csrfHeaderName = "[[${_csrf.headerName}]]";
 		var csrfValue = "[[${_csrf.token}]]";
 
 		$(document).ready(function () {
 			$("#customerVerificationContent").richText();
+			$("#orderConfirmationContent").richText();
 		});
 	</script>
 
