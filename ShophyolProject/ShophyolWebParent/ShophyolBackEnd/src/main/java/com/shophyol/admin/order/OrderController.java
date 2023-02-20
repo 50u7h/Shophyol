@@ -12,6 +12,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.shophyol.admin.paging.PagingAndSortingHelper;
 import com.shophyol.admin.paging.PagingAndSortingParam;
 import com.shophyol.admin.setting.SettingService;
+import com.shophyol.common.entity.Country;
 import com.shophyol.common.entity.order.Order;
 import com.shophyol.common.entity.setting.Setting;
 
@@ -79,6 +80,29 @@ public class OrderController {
 		}
 
 		return defaultRedirectURL;
+
+	}
+
+	@GetMapping("/orders/edit/{id}")
+	public String editOrder(@PathVariable("id") Integer id, Model model, RedirectAttributes ra,
+			HttpServletRequest request) {
+		try {
+			Order order = orderService.get(id);
+			;
+
+			List<Country> listCountries = orderService.listAllCountries();
+
+			model.addAttribute("pageTitle", "Edit Order (ID: " + id + ")");
+			model.addAttribute("order", order);
+			model.addAttribute("listCountries", listCountries);
+
+			return "orders/order_form";
+
+		} catch (OrderNotFoundException ex) {
+			ra.addFlashAttribute("message", ex.getMessage());
+
+			return defaultRedirectURL;
+		}
 
 	}
 }
