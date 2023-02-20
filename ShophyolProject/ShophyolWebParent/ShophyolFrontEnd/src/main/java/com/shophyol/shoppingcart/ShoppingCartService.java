@@ -66,4 +66,7 @@ public class ShoppingCartService {
 		cartRepo.deleteByCustomerAndProduct(customer.getId(), productId);
 	}
 
+	public void deleteByCustomer(Customer customer) {
+		cartRepo.deleteByCustomer(customer.getId());
+	}
 }
