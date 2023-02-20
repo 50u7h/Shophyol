@@ -73,7 +73,9 @@
 				</div>
 				<div class="mt-2">
 					<div th:if="${shippingSupported}">
-						<button class="btn btn-primary p-3 mt-2" style="margin-left: 30px">Check Out</button>
+						<form th:action="@{/checkout}">
+							<button type="submit" class="btn btn-danger p-3 mt-2">Check Out</button>
+						</form>
 					</div>
 
 					<div th:unless="${shippingSupported}">
@@ -84,7 +86,7 @@
 						</div>
 
 						<div th:unless="${usePrimaryAddressAsDefault}">
-							<a th:href="@{/address_book(redirect=cart)}" class="h6">Use another shipping address</a>
+							<a th:href="@{/address_book}" class="h6">Use another shipping address</a>
 						</div>
 					</div>
 				</div>

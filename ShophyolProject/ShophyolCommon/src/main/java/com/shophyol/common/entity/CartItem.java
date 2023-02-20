@@ -59,4 +59,16 @@ public class CartItem extends IdBasedEntity {
 	public float getSubtotal() {
 		return product.getDiscountPrice() * quantity;
 	}
+
+	@Transient
+	private float shippingCost;
+
+	@Transient
+	public float getShippingCost() {
+		return shippingCost;
+	}
+
+	public void setShippingCost(float shippingCost) {
+		this.shippingCost = shippingCost;
+	}
 }
