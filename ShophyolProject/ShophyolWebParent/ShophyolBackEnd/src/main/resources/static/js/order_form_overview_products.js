@@ -78,7 +78,7 @@ function setAndFormatNumberForField(fieldId, fieldValue) {
 }
 
 function getNumberValueRemovedThousandSeparator(fieldRef) {
-	fieldValue = fieldRef.val().replace(",", "");
+	fieldValue = fieldRef.val().replace(".", "");
 	return parseFloat(fieldValue);
 }
 
